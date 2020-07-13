@@ -17,16 +17,14 @@ class ProfilePhotoActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-        goToPhotoViewRtn.setOnClickListener {
-            val myIntent = Intent(mContext,ProfilePhotoActivity::class.java)
-            startActivity(myIntent)
+
         }
-
-    }
-
     override fun setValues() {
 
     }
+    }
 
 
-}
+
+
+
