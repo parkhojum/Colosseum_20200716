@@ -12,7 +12,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:layout_width="120dp"
@@ -20,6 +21,13 @@
             android:src="@drawable/iu_face"
             app:civ_border_width="2dp"
             app:civ_border_color="#000000"/>
+
+        <Button
+            android:id="@+id/goToPhotoViewRtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="사진 크게 보기" />
 
 
 
