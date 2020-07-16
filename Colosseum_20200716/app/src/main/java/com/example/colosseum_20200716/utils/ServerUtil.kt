@@ -2,6 +2,7 @@ package com.example.colosseum_20200716.utils
 
 import android.content.Context
 import android.provider.ContactsContract
+import android.util.Log
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -57,6 +58,20 @@ class ServerUtil {
 
                 override fun onResponse(call: Call, response: Response) {
                     //연결은 성공해서, 서버가 응답을 내려줬을 때 실행됨 (아직 로그인 성공 / 실패가 아님)
+
+                    //실제로 서버가 내려준 응답 내용을 변수로 저장.
+                    val badyStr = response.body?.string()
+
+                    //응답 내용으로 Json 객체 생성
+                    val json = JSONObject(badyStr)
+
+                    //최종적으로 가져온 내용을 로그로 출력
+                        Log.d("서버 응답 내용", json.toString())
+
+                    //handLer 변수에 응답 처리 코드가 들어있다면 실행해주자
+                    handler?.onResponse(json)
+
+
                 }
 
             })
