@@ -16,4 +16,9 @@ class PizzStoreListFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_pizz_s,container,)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        mPizzaStoreList
+    }
 }
