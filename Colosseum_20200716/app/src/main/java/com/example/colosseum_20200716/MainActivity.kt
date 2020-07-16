@@ -38,6 +38,11 @@ class MainActivity : BaseActivity() {
                     }
                     else {
                         //로그인 실패 => 토스트로 실패했다고 출려하자
+                        //어떤 이유로 실패 했는지 서버가 주는 메세지를 출력
+
+                        //서버가 알려주는 메세지를 파싱
+                        val message = json.getString("message")
+
                         runOnUiThread {
                             Toast.makeText(mContext,"로그인 실패",Toast.LENGTH_SHORT).show()
                         }

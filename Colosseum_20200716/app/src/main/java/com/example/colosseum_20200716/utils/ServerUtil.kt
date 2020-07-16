@@ -20,7 +20,7 @@ class ServerUtil {
     companion object {
 
         //호스트 주소를 저장해두는 변수
-        private val BASE_URL = "http//15.165.177.142"
+        private val BASE_URL = "http://15.165.177.142"
 
         //로그인 API를 호출해주는 기능
         //1. 화면에서 어떤 데이터를 받아와야 하는지? email,pw
