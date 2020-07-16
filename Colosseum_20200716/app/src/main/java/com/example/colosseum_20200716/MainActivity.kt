@@ -2,8 +2,10 @@ package com.example.colosseum_20200716
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.colosseum_20200716.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
 
 class MainActivity : BaseActivity() {
 
@@ -22,7 +24,29 @@ class MainActivity : BaseActivity() {
             val inputPw = pwEdt.text.toString()
 
             //서버에 전달해주고 응답 처리
-            ServerUtil.postRequestLogin(mContext, inputEmail, inputPw, null)
+            ServerUtil.postRequestLogin(mContext, inputEmail, inputPw, object :ServerUtil.JsonResponseHandler{
+                override fun onResponse(json: JSONObject) {
+
+                    //로그인 성공 / 실패 여부 => code 에 있는 INT 값으로 구별
+                    //200 : 로구인 성공
+                    //그 외의 모든 숫자 : 로구인 실패
+
+                    val codeNum = json.getInt("code")
+
+                    if (codeNum == 200) {
+                        //로그인 성공
+                    }
+                    else {
+                        //로그인 실패 => 토스트로 실패했다고 출려하자
+                        runOnUiThread {
+                            Toast.makeText(mContext,"로그인 실패",Toast.LENGTH_SHORT).show()
+                        }
+
+
+                    }
+
+                }
+            })
         }
 
     }
