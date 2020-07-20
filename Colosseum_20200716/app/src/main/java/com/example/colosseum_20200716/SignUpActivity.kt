@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.JsonReader
 import android.util.Log
+import android.widget.Toast
+import com.example.colosseum_20200716.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import org.json.JSONObject
 
 class SignUpActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,6 +20,48 @@ class SignUpActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        okBtn.setOnClickListener {
+
+//            닉네임 / 이메일 비어있으면 안된다
+
+            val inputEmail = emailEdt.text.toString()
+
+            if (inputEmail.isEmpty()){
+                Toast.makeText(mContext,"이메일은 반드시 입력해야 합니다", Toast.LENGTH_SHORT).show()
+//                밑의 코드는 실행할 필요가 없다
+//                이벤트 처리 강제 종류
+                return@setOnClickListener
+            }
+
+            val inputNickname = nickNameEdt.text.toString()
+            if (inputNickname.isEmpty()) {
+                Toast.makeText(mContext,"닉네임은 반드시 입력해야 합니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
+
+//            비번은 8글자 이내면 안됨
+
+                val inputPassword = passwordEdt.text.toString()
+                if (inputPassword.length < 8){
+                    Toast.makeText(mContext,"비밀번호는 최소 8글자 이상이어야 합니다.", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+//            모든 검사를 통과하면 서버에 가입요청
+//            여기의 코드가 실행된다는 것은 모든 검사를 통과했다는 말.(return)
+
+          ServerUtil.putRequestSigniUp(mContext,inputEmail,inputPassword,inputNickname,object : ServerUtil.JsonResponseHandler{
+              override fun onResponse(json: JSONObject) {
+
+
+              }
+
+          })
+
+        }
 
         // 비밀번호 입력 내용 변경 이벤트 처리
         passwordEdt.addTextChangedListener(object :TextWatcher{
