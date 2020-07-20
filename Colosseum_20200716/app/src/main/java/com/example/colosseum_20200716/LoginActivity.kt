@@ -41,6 +41,13 @@ class LoginActivity : BaseActivity() {
 
                     if (codeNum == 200) {
                         //로그인 성공
+
+//                        json => token 스트링 추출
+                        val data = json.getJSONObject("data")
+                        val token = data.getString("token")
+
+//                        얻어낸 토큰 저장
+
                     }
                     else {
                         //로그인 실패 => 토스트로 실패했다고 출려하자
