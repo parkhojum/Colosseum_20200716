@@ -56,6 +56,25 @@ class SignUpActivity : BaseActivity() {
           ServerUtil.putRequestSigniUp(mContext,inputEmail,inputPassword,inputNickname,object : ServerUtil.JsonResponseHandler{
               override fun onResponse(json: JSONObject) {
 
+                  val code = json.getInt("code")
+
+                  if (code == 200){
+//                      회원가입 성공 => 토스트로 가입 성공메세지 + 로그인 복귀
+
+                      runOnUiThread {
+                          Toast.makeText(mContext,"회원가입에 성공했습니다", Toast.LENGTH_SHORT).show()
+                          finish()
+                      }
+                  }
+                  else{
+//                      가입 실패 => 서버가 알려주는 실패 사유를 토스트로 출력
+                      val message = json.getString("message")
+
+                     runOnUiThread {
+                         Toast.makeText(mContext,message,Toast.LENGTH_SHORT).show()
+                     }
+
+                  }
 
               }
 
