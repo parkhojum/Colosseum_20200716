@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.colosseum_20200716.utils.ContextUtil
 import com.example.colosseum_20200716.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_login.*
 import org.json.JSONObject
@@ -47,6 +48,7 @@ class LoginActivity : BaseActivity() {
                         val token = data.getString("token")
 
 //                        얻어낸 토큰 저장
+                        ContextUtil.setLoginUserToken(mContext, token)
 
                     }
                     else {
