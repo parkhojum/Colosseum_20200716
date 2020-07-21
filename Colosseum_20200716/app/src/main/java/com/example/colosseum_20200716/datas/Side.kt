@@ -5,7 +5,7 @@ import org.json.JSONObject
 class Side {
     var id = 0
     var title = " "
-    var voteCout = 0
+    var voteCount = 0
 
     companion object{
 
@@ -16,7 +16,7 @@ class Side {
 //    s의 데이터들을 json을 이용해서 채워주자
     s.id = json.getInt("id")
     s.title = json.getString("title")
-    s.voteCout = json.getInt("vote_count")
+    s.voteCount = json.getInt("vote_count")
 
     return s
 }

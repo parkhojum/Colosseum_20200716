@@ -61,6 +61,13 @@ class ViewTopicDetallActivity : BaseActivity() {
                     topicTitleTxt.text = mTopic.title
                     Glide.with(mContext).load(mTopic.imageUrl).into(topicImg)
 
+//                    진영 정보도 같이 표시
+                    firstSideTitleTxt.text = mTopic.sideList[0].title
+                    secondSideTitleTxt.text = mTopic.sideList[1].title
+
+                    firstSideCountTxt.text = "${mTopic.imageUrl[0].vote}"
+
+
                 }
 
             }
