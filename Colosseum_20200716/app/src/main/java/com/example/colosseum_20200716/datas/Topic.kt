@@ -1,11 +1,15 @@
 package com.example.colosseum_20200716.datas
 
 import org.json.JSONObject
+import java.util.ArrayList
 
 class Topic {
     var id = 0
     var title = " "
     var imageUrl = " "
+
+//    주제는 선택 진영 목록을 하위 정보로 갖는다.
+    val sideList = ArrayList<Side>()
 
     companion object{
 
@@ -23,6 +27,22 @@ class Topic {
             topic.title = json.getString("title")
             topic.imageUrl = json.getString("img_url")
 
+
+//            side 배열에 들어있는, 진영 선택 정보도 넣어줘야함
+
+
+            val sides = json.getJSONArray("sides")
+
+//            받아낸 jsonArray 내부를 스캔
+            for (i in 0 until sides.length()){
+
+//                진영 정보를 하나씩 파싱해서 => 토론의 진영 목록에 추가
+                val sideObj = sides.getJSONObject(i)
+                val side = Side.getSideFromJson(sideObj)
+
+                topic.sideList.add(side)
+
+            }
 
 //            완성된 객체를 리턴
             return topic
