@@ -1,5 +1,6 @@
 package com.example.colosseum_20200716
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.colosseum_20200716.adapters.TopicAdater
@@ -23,6 +24,23 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+        topicListView.setOnItemClickListener { parent, view, position, id ->
+
+            val clickedTopic = mTopicList[position]
+
+
+
+
+
+            val myIntent = Intent(mContext,ViewTopicDetallActivity::class.java)
+            myIntent.putExtra("topicId",clickedTopic.id)
+            startActivity(myIntent)
+
+
+
+
+        }
 
     }
 
@@ -51,7 +69,7 @@ class MainActivity : BaseActivity() {
 //                for문을 이용해서, topics 내부의 데이터를 하나씩 추출.
 //                i가0부터 ~topics의 갯수 직전 4개 :(0,1,2,3,)
 
-                for (i in 0 until  topics.length()-1){
+                for (i in 0 until  topics.length()){
 
 //                topics 내부의 데이터를 JSONObect 로 추출
                     val topicObj = topics.getJSONObject(i)
