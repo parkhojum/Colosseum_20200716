@@ -107,15 +107,7 @@ class ViewTopicDetallActivity : BaseActivity() {
 //                화면에 토론 관련 정보 표시
                 runOnUiThread {
 
-                    topicTitleTxt.text = mTopic.title
-                    Glide.with(mContext).load(mTopic.imageUrl).into(topicImg)
-
-//                    진영 정보도 같이 표시
-                    firstSideTitleTxt.text = mTopic.sideList[0].title
-                    secondSideTitleTxt.text = mTopic.sideList[1].title
-
-                    firstSideCountTxt.text = "${mTopic.sideList[0].voteCount}"
-                    secondSideCountTxt.text = "${mTopic.sideList[1].voteCount}"
+                    setTopicDataToUi()
 
 
                 }
@@ -129,7 +121,29 @@ class ViewTopicDetallActivity : BaseActivity() {
 //    화면에 mTopic 기반으로 데이터 반영해주는 기능
 
     fun setTopicDataToUi() {
-        setTopicDataToUi()
+        topicTitleTxt.text = mTopic.title
+        Glide.with(mContext).load(mTopic.imageUrl).into(topicImg)
+
+//                    진영 정보도 같이 표시
+        firstSideTitleTxt.text = mTopic.sideList[0].title
+        secondSideTitleTxt.text = mTopic.sideList[1].title
+
+        firstSideCountTxt.text = "${mTopic.sideList[0].voteCount}"
+        secondSideCountTxt.text = "${mTopic.sideList[1].voteCount}"
+
+//        내가 투표 했는지 or 어느 진영에 했는지에 따라 버튼 ux 변경
+//         투표x : 두 버튼 모두 "투표하기" + 양진영 모두 클릭 가능
+//        첫번째 진영 투표 : 첫 버튼 "투표 취소" , 두번째 진영 "갈아타기"
+//        그외 : 두번째 진영 투표한걸 처리
+
+//        투표 한 진영이 몇번째 진영인지? 파악해야함
+
+
+        if (mTopic.mySideId == -1){
+//            아직 투표를 안한 경우
+            voteToFirstSideBtn.text = "투표하기"
+            voteToSecondSideBtn.text = "투표하기"
+        }
 
     }
 
