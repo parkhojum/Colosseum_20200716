@@ -11,6 +11,9 @@ class Topic {
 //    주제는 선택 진영 목록을 하위 정보로 갖는다.
     val sideList = ArrayList<Side>()
 
+    var mySideId = -1
+    var mySide : Side? = null //내가 투표한 진영은 없을 수도 있다(null 기능)
+
     companion object{
 
         //    json 한 덩어리를 넣으면 => Topic객체로 변환해주는 기능
@@ -41,6 +44,17 @@ class Topic {
                 val side = Side.getSideFromJson(sideObj)
 
                 topic.sideList.add(side)
+
+            }
+
+//            내 선택 진영 관련 정보 파싱
+            topic.mySideId = json.getInt("my_side_id")
+//            서버에서 my_side에 진영 정보를 넣어줄때만 파싱
+
+            if (!json.isNull("my_side")) {
+
+                val mySideJson = json.getJSONObject("my_side")
+                topic.mySide = Side.getSideFromJson(mySideJson)
 
             }
 

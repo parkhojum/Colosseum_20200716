@@ -130,6 +130,7 @@ class ViewTopicDetallActivity : BaseActivity() {
 
     fun setTopicDataToUi() {
         setTopicDataToUi()
+
     }
 
 }
