@@ -25,7 +25,7 @@ class ReplyAdapter (val mContext: Context, val resId : Int, val mList: List<Repl
         val row = tempRow!!
 
         val writerNickNameTxt = row.findViewById<TextView>(R.id.writerNickNameTxt)
-        val selectedSideTitleTxt = row.findViewById<TextView>(R.id.secondSideCountTxt)
+        val selectedSideTitleTxt = row.findViewById<TextView>(R.id.selectedSideTitleTxt)
         val contentTxt = row.findViewById<TextView>(R.id.contentTxt)
 
         val data = mList[position]
