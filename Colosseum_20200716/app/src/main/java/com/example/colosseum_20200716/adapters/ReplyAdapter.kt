@@ -21,7 +21,7 @@ class ReplyAdapter (val mContext: Context, val resId : Int, val mList: List<Repl
             tempRow = inf.inflate(R.layout.reply_list_ltem, null)
         }
 
-        val row = tempRow
+        val row = tempRow!!
 
         return row
     }
