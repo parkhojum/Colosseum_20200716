@@ -144,6 +144,7 @@ class ViewTopicDetallActivity : BaseActivity() {
 
         })
 
+
     }
 
 //    화면에 mTopic 기반으로 데이터 반영해주는 기능
