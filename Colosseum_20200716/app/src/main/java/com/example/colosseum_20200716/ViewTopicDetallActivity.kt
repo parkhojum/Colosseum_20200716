@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.example.colosseum_20200716.datas.Reply
 import com.example.colosseum_20200716.datas.Topic
 import com.example.colosseum_20200716.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_view_topic_detall.*
@@ -16,6 +17,10 @@ class ViewTopicDetallActivity : BaseActivity() {
 
 //    서버에서 받아오는 토론 정보를 저장할 맴버변수
     lateinit var mTopic : Topic
+
+
+    //                토론 주제를 받아올때 딸려오는 의견 목록을 담아줄 배열
+    val mReplyList = ArrayList<Reply>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,6 +62,7 @@ class ViewTopicDetallActivity : BaseActivity() {
 //                    맴버변수로 있는 토픽을 갈아주자
 
                     mTopic = Topic.getTopicFromJson(topic)
+
 
 //                    화면에 mTopic의 데이터를 이용해서 반영
                     runOnUiThread {
@@ -103,6 +109,17 @@ class ViewTopicDetallActivity : BaseActivity() {
 //                Topic 객체로 변환해서맴버 변수에 저장
 
                 mTopic = Topic.getTopicFromJson(topicObj)
+
+//                같이 불러오는 의견 목록을 파싱해서 배열에 담자
+
+                val replies = topicObj.getJSONArray("replies")
+
+//                JSONArray를 하나씩 돌면서 Reply 형태로 바꿔서 목록에 추가
+
+                for (i in 0 until replies.length()) {
+                    mReplyList.add(Reply.getReplyFromJson(replies.getJSONObject(i)))
+                }
+
 
 //                화면에 토론 관련 정보 표시
                 runOnUiThread {
