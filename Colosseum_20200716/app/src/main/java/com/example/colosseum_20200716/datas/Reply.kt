@@ -22,8 +22,9 @@ class Reply {
 
 
 //            작성자 /선택진영 => JSONObject를 받아 곧바로 대입
-            r.writer = User.getUserFromJson()
-            r.selectedSide = Side.getSideFromJson(json.getJSONObject("s"))
+            r.writer = User.getUserFromJson(json.getJSONObject("user"))
+
+            r.selectedSide = Side.getSideFromJson(json.getJSONObject("selected_side"))
 
             return r
 
