@@ -70,6 +70,10 @@ replyWriteTimeTxt.text = TimeUtil.getTimeAgoFromCalendar(data.weittenDateTime)
 //            mContext 변수가 어떤 화면이 리스트뷰를 뿌리는지 들고 있다
 //            mContext를 이용해서 액티비티를 열어주자
 
+//            몇번 의견에 대한 상세를 보고싶은지 id만 넘져주자
+//            해당 화면에서 다시 서버를 통해 데이터를 받아오자.
+            myIntent.putExtra("replyId", data.id)
+
 
             mContext.startActivity(myIntent)
 
