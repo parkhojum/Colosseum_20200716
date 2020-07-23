@@ -34,7 +34,18 @@ class ViewTopicDetallActivity : BaseActivity() {
         setValues()
     }
 
-    override fun setupEvents() {
+//    이 화면으로 돌아올때마다 토론 진행 현황 (+ 댓글 목록) 자동 새로고침
+
+    override fun onResume() {
+        super.onResume()
+
+//        서버에서 다시 토론 현황을 불러오자
+
+        getTopicDateilFromServer()
+
+    }
+
+   override fun setupEvents() {
 
 //        의견 등옥하기 누르면 작성 화면으로
         postReplyBtn.setOnClickListener {
@@ -76,6 +87,10 @@ class ViewTopicDetallActivity : BaseActivity() {
             ServerUtil.postRequesVote(mContext, clickedSide.id,object : ServerUtil.JsonResponseHandler{
                 override fun onResponse(json: JSONObject) {
 
+//                    의견 목록을 한번 비웠다가 다시 파싱
+                    mReplyList.clear()
+
+
 //                   서버는 변경돤 결과가 어떻게 되는지 다시 내려줌
 //                    이 응답에서, 토론 진행 현황을 다시 파싱해서
 //                    화면에 반영
@@ -116,8 +131,9 @@ class ViewTopicDetallActivity : BaseActivity() {
             Toast.makeText(mContext,"주제 상세 id에 문제가 있습니다", Toast.LENGTH_SHORT).show()
         }
 
-//        서버에서 토론 주제에 대한 상세 진행 상황 가져오기
-        getTopicDateilFromServer()
+//          onResume에서 토론 진행 현황을 서버에서 받아온다
+//        기존 서버 호출 코드 삭제
+
 
 //        어댑터 초기화 => 리스트뷰와 연결
         mReplyAdapter = ReplyAdapter(mContext, R.layout.reply_list_ltem, mReplyList)
