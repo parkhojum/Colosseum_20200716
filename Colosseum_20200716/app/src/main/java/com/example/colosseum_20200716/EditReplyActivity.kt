@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.colosseum_20200716.utils.ServerUtil
 import kotlinx.android.synthetic.main.activity_edit_reply.*
+import kotlinx.android.synthetic.main.reply_list_ltem.*
 import org.json.JSONObject
 
 class EditReplyActivity : BaseActivity() {
@@ -19,6 +20,10 @@ class EditReplyActivity : BaseActivity() {
         setValues()
     }
     override fun setupEvents() {
+
+
+
+
 
         postBtn.setOnClickListener {
 
