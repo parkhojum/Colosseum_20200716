@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.example.colosseum_20200716.R
 import com.example.colosseum_20200716.datas.Reply
 import com.example.colosseum_20200716.datas.Topic
+import com.example.colosseum_20200716.utils.TimeUtil
 import java.text.SimpleDateFormat
 
 class ReplyAdapter (val mContext: Context, val resId : Int, val mList: List<Reply>)
@@ -40,10 +41,12 @@ class ReplyAdapter (val mContext: Context, val resId : Int, val mList: List<Repl
 
 //        시간정보 텍스트뷰 내용 설정 => 방금전, ?분전,?시간전 등등...
 
-//        날짜 출력 양식용 변수
-        val sdf = SimpleDateFormat("yy-MM-dd a h시 m분")
+replyWriteTimeTxt.text = TimeUtil.getTimeAgoFromCalendar(data.weittenDateTime)
 
-        replyWriteTimeTxt.text = sdf.format(data.weittenDateTime.time)
+//        날짜 출력 양식용 변수
+//        val sdf = SimpleDateFormat("yy-MM-dd a h시 m분")
+//
+//        replyWriteTimeTxt.text = sdf.format(data.weittenDateTime.time)
 
 
         return row
