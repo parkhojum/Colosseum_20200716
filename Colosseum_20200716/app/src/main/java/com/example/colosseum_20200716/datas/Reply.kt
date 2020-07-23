@@ -41,6 +41,18 @@ class Reply {
 //            맴버변수인 CaLendar변수에게 데이터 적용
             r.weittenDateTime.time = sdf.parse(createdAtString)
 
+//            핸드폰의 시간대와, 서버의 시간대의 "시차를 구해서"
+//            작성 일시의 시간값을 조정
+
+//            내폰 의 시간대가 어디 시간대인지 변수로 저장
+            val myPhoneTimeZone = r.weittenDateTime.timeZone //한국폰: 한국시간대
+
+//            (서버랑) 몇시간 차이가 나는지 변수로 저장. => 밀리초까지 계산된 시차 => 시간단위로 변경
+            val timeOffoset = myPhoneTimeZone.rawOffset / 1000 / 60 /60
+
+//            게시글 작성시간을 timeOffset만큼 시간값을 더해주자.
+            r.weittenDateTime.add(Calendar.HOUR, timeOffoset)
+
             return r
 
         }
