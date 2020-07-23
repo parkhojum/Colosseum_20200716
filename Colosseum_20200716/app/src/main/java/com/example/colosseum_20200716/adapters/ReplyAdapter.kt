@@ -33,6 +33,11 @@ class ReplyAdapter (val mContext: Context, val resId : Int, val mList: List<Repl
 //        사간 정보 텍스트뷰
         val replyWriteTimeTxt = row.findViewById<TextView>(R.id.replyWriteTimeTxt)
 
+//        버튼들 추가 => 좋/싫/답글
+        val replyBtn = row.findViewById<TextView>(R.id.replyBtn)
+        val likeBtn = row.findViewById<TextView>(R.id.likeBtn)
+        val dislikeBtn = row.findViewById<TextView>(R.id.dislikeBtn)
+
         val data = mList[position]
 
         writerNickNameTxt.text = data.writer.nickname
@@ -48,6 +53,11 @@ replyWriteTimeTxt.text = TimeUtil.getTimeAgoFromCalendar(data.weittenDateTime)
 //
 //        replyWriteTimeTxt.text = sdf.format(data.weittenDateTime.time)
 
+
+//        좋/싫/답글 갯수 반영
+        likeBtn.text = "좋아요 ${data.likeCount}"
+        dislikeBtn.text = "싫어요${data.dislikeCount}"
+        replyBtn.text = "답글${data.replyCount}"
 
         return row
     }
