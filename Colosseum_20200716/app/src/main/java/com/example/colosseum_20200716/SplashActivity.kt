@@ -28,7 +28,7 @@ class SplashActivity : BaseActivity() {
 //            저장돤 토큰이 있다면 => 메인화면으로 이동
 //            토큰이 빈칸이라면 => 로그인 필요 => 로그인화면
 
-            if (ContextUtil.getLoginUserToken(mContext) == " "){
+            if (ContextUtil.getLoginUserToken(mContext) == ""){
                 val myIntent = Intent(mContext,LoginActivity::class.java)
                 startActivity(myIntent)
             }

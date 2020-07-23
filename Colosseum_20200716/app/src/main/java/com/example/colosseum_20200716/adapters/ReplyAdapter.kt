@@ -28,11 +28,18 @@ class ReplyAdapter (val mContext: Context, val resId : Int, val mList: List<Repl
         val selectedSideTitleTxt = row.findViewById<TextView>(R.id.selectedSideTitleTxt)
         val contentTxt = row.findViewById<TextView>(R.id.contentTxt)
 
+//        사간 정보 텍스트뷰
+        val replyWriteTimeTxt = row.findViewById<TextView>(R.id.replyWriteTimeTxt)
+
         val data = mList[position]
 
         writerNickNameTxt.text = data.writer.nickname
         selectedSideTitleTxt.text = "(${data.selectedSide.title})"
         contentTxt.text = data.content
+
+//        시간정보 텍스트뷰 내용 설정 => 방금전, ?분전,?시간전 등등...
+
+
 
         return row
     }
