@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.colosseum_20200716.datas.Reply
 import com.example.colosseum_20200716.utils.ServerUtil
+import com.example.colosseum_20200716.utils.TimeUtil
+import kotlinx.android.synthetic.main.activity_view_reply_deta.*
 import org.json.JSONObject
 
 class ViewReplyDetaActivity : BaseActivity() {
@@ -22,6 +24,8 @@ class ViewReplyDetaActivity : BaseActivity() {
         setValues()
     }
     override fun setupEvents() {
+
+
 
     }
 
@@ -42,7 +46,26 @@ class ViewReplyDetaActivity : BaseActivity() {
     ServerUtil.getRequestReplyDetail(mContext, mReplyId, object :ServerUtil.JsonResponseHandler{
         override fun onResponse(json: JSONObject) {
 
+            val data = json.getJSONObject("data")
+            val reply = data.getJSONObject("reply")
 
+//            replyobj 를 Reply클레스로 변환 =>
+
+            mReply = Reply.getReplyFromJson(replyObj)
+
+//            mReply 내부의 변수(정보) 들을 => 화면에 반영
+
+            runOnUiThread {
+
+                writerNickNameTxt.text = mReply.writer.nickname
+
+                selectedSideTitleTxt.text = "(${mReply.selectedSide.title})"
+
+                writtenDataTimeTxt.text = TimeUtil.getTimeAgoFromCalendar(mReply.weittenDateTime)
+
+                replyContentTxt.text = mReply.content
+
+            }
 
         }
 
