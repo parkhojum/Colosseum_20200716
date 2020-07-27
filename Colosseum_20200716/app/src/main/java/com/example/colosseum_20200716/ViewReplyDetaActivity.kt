@@ -2,6 +2,7 @@ package com.example.colosseum_20200716
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.colosseum_20200716.adapters.ReReplyAdapter
 import com.example.colosseum_20200716.datas.Reply
 import com.example.colosseum_20200716.utils.ServerUtil
 import com.example.colosseum_20200716.utils.TimeUtil
@@ -16,6 +17,9 @@ class ViewReplyDetaActivity : BaseActivity() {
 
     // 이 화면에서 보여줘야할 의견의 정보를 가진 변수 => 맴버 변수
     lateinit var mReply : Reply
+
+//    의견에 달린 답글들을 저장할 목록
+    val mReReplyList = ArrayList<Reply>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +56,18 @@ class ViewReplyDetaActivity : BaseActivity() {
 //            replyobj 를 Reply클레스로 변환 =>
 
             mReply = Reply.getReplyFromJson(replyObj)
+
+//            replies JSONArray를 들면서 => Reply로 변환해서 => mReplyList에 추가
+
+            val replies = replyObj.getJSONArray("replies")
+
+            for (i in 0 until replies.length()){
+
+                val reply = Reply.getReplyFromJson(replies.getJSONObject(i))
+
+                mReReplyList.add(reply)
+
+            }
 
 //            mReply 내부의 변수(정보) 들을 => 화면에 반영
 
