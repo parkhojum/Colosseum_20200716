@@ -47,7 +47,7 @@ class ViewReplyDetaActivity : BaseActivity() {
         override fun onResponse(json: JSONObject) {
 
             val data = json.getJSONObject("data")
-            val reply = data.getJSONObject("reply")
+            val replyObj = data.getJSONObject("reply")
 
 //            replyobj 를 Reply클레스로 변환 =>
 
