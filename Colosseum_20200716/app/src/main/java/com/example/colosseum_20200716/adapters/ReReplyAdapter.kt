@@ -48,6 +48,24 @@ class ReReplyAdapter (val mContext: Context, val resId : Int, val mList: List<Re
         likeBtn.text = "좋아요${data.likeCount}"
         dislikeBtn.text = "싫어요${data.dislikeCount}"
 
+        if (data.myLike){
+            likeBtn.setBackgroundResource(R.drawable.red_border_box)
+            likeBtn.setTextColor(mContext.resources.getColor(R.color.naverRed))
+        }
+        else{
+            likeBtn.setBackgroundResource(R.drawable.gray_border_box)
+            likeBtn.setTextColor(mContext.resources.getColor(R.color.textGray))
+        }
+
+        if (data.myDislike) {
+            dislikeBtn.setBackgroundResource(R.drawable.blue_border_box)
+            dislikeBtn.setTextColor(mContext.resources.getColor(R.color.naverBlue))
+        }
+        else{
+            dislikeBtn.setBackgroundResource(R.drawable.gray_border_box)
+            dislikeBtn.setTextColor(mContext.resources.getColor(R.color.textGray))
+        }
+
         return row
     }
 
