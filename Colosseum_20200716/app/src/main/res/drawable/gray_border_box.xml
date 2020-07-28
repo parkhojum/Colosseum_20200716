@@ -55,7 +55,8 @@
 
 
         </item>
- <item
+
+        <item
      android:top="1dp"
      android:left="1dp"
      android:right="1dp"
