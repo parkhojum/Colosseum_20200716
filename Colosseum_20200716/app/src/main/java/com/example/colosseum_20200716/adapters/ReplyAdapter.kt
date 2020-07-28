@@ -102,6 +102,7 @@ replyWriteTimeTxt.text = TimeUtil.getTimeAgoFromCalendar(data.weittenDateTime)
 
 //                    이미 화면에 뿌려져 있는 data의 내용만 교체
                     data.likeCount = reply.likeCount
+                    data.dislikeCount = reply.dislikeCount
 
 //                    data의 값이 변경 => 리스트뷰를 구성하는 목록에 변경
 //                    => 어댑터.notifDataSetChanged 실행해야함
@@ -144,16 +145,17 @@ replyWriteTimeTxt.text = TimeUtil.getTimeAgoFromCalendar(data.weittenDateTime)
 
                     val reply = Reply.getReplyFromJson(replyObj)
 
+
+                    data.likeCount = reply.likeCount
                     data.dislikeCount = reply.dislikeCount
 
-                    val uiHandler = android.os.Handler(Looper.getMainLooper())
+                    val myHandler = android.os.Handler(Looper.getMainLooper())
 
-                    uiHandler.post {
+                    myHandler.post {
                         notifyDataSetChanged()
 
 
                         val message = json.getString("message")
-
                         Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
 
                     }
