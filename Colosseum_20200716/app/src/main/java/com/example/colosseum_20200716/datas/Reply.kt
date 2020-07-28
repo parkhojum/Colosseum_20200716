@@ -19,6 +19,10 @@ class Reply {
     var dislikeCount = 0
     var replyCount =0
 
+//    내가 좋아요를 눌렀는지 / 싫어요를 눌렀는지 저장할 변수들
+    var myLike = false
+    var myDislike = false
+
     companion object{
 
 //        JSONObje
@@ -64,6 +68,10 @@ class Reply {
             r.dislikeCount = json.getInt("dislike_count")
             r.replyCount = json.getInt("reply_count")
 
+//            내 좋아요 / 싫어요 여부도 파싱해서 저장
+
+            r.myLike = json.getBoolean("my_like")
+            r.myDislike = json.getBoolean("my_dislike")
 
 
             return r
