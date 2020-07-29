@@ -20,6 +20,7 @@ abstract class BaseActivity: AppCompatActivity() {
 // BaseActivity를 상속받는 모든 액티비디들이 => 이 변수들을 상속받게 된다.
 
  lateinit var notificationBtn : ImageView
+
  lateinit var notiCountTxt : TextView
 
  override fun onCreate(savedInstanceState: Bundle?) {
