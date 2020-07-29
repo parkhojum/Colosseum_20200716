@@ -1,8 +1,8 @@
 package com.example.colosseum_20200716
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.example.colosseum_20200716.adapters.TopicAdater
 import com.example.colosseum_20200716.datas.Topic
 import com.example.colosseum_20200716.utils.ServerUtil
@@ -25,6 +25,18 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
+//        알림버튼을 누르면 => 알림 목록 화면으로 이동
+        notificationBtn.setOnClickListener {
+
+//            이미지뷰도 => setOnClickListener 설정 가능
+
+            val myIntent = Intent(mContext, NotificationListActivity::class.java)
+            startActivity(myIntent)
+
+
+
+        }
 
         topicListView.setOnItemClickListener { parent, view, position, id ->
 
@@ -51,6 +63,9 @@ class MainActivity : BaseActivity() {
 
         mTopicAdapter = TopicAdater(mContext,R.layout.topic_list_item,mTopicList)
         topicListView.adapter = mTopicAdapter
+
+//        BaseActivity가 돌려주는 => 알림 버튼을
+        notificationBtn.visibility = View.VISIBLE
 
     }
 

@@ -2,6 +2,7 @@ package com.example.colosseum_20200716
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.widget.ImageView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -12,6 +13,11 @@ abstract class BaseActivity: AppCompatActivity() {
 
  abstract fun setupEvents()
  abstract fun setValues()
+
+// 액션바에서 만들어둔 뷰들을 맴버변수로 만들어두자.
+// BaseActivity를 상속받는 모든 액티비디들이 => 이 변수들을 상속받게 된다.
+
+ lateinit var notificationBtn : ImageView
 
  override fun onCreate(savedInstanceState: Bundle?) {
   super.onCreate(savedInstanceState)
@@ -41,6 +47,8 @@ abstract class BaseActivity: AppCompatActivity() {
 //  액션바 뒤의 기본색 제거 => 액션버르 들고 있는 툴바의 좌우 여백(padding)을 0으로 없애자
   val parentToolBar = myActionBar.customView.parent as Toolbar
   parentToolBar.setContentInsetsAbsolute(0,0)
+
+  notificationBtn = myActionBar.customView.findViewById(R.id.notificationBtn)
 
  }
 

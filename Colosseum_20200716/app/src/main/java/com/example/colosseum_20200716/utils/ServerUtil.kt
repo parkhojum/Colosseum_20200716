@@ -78,6 +78,60 @@ class ServerUtil {
             })
         }
 
+//      알임목록 가져오기
+        fun getRequestNotificationList(context: Context, handler: JsonResponseHandler?) {
+            val client = OkHttpClient()
+
+//            GET / DELETE : query에 파라미터 첨부
+//            query => 주소(url)에 직접 어떤 데어터가 담기는지 기록
+//            주소를 적을때 => 파라미터 첨부도 같이 진행해야함.
+
+//                몇번 주제에 대해 보고싶은지를 화면에서 받은 topic로 주소에 연결
+            val urlBuilder = "${BASE_URL}/notification".toHttpUrlOrNull()!!.newBuilder()
+
+//            urlBuilder에 필요한 파라미터 첨부
+            urlBuilder.addEncodedQueryParameter("need_all_notis","true")
+
+
+//            모든 데이터가 담겼으면 주소를 완성해서 String으로 저장
+            val urlString = urlBuilder.build().toString()
+
+//            실제로 요청 정보를 request 변수에 종합
+            val request = Request.Builder()
+                .url(urlString)
+                .get()
+                .header("X-Http-Token",ContextUtil.getLoginUserToken(context))
+                .build()
+
+//            완성된 요청 정보를 실제로 호출 => 응답처리
+
+            client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    //서버 연결 자체에 실패한 경우
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    //연결은 성공해서, 서버가 응답을 내려줬을 때 실행됨 (아직 로그인 성공 / 실패가 아님)
+
+                    //실제로 서버가 내려준 응답 내용을 변수로 저장.
+                    val badyStr = response.body?.string()
+
+                    //응답 내용으로 Json 객체 생성
+                    val json = JSONObject(badyStr)
+
+                    //최종적으로 가져온 내용을 로그로 출력
+                    Log.d("서버 응답 내용", json.toString())
+
+                    //handLer 변수에 응답 처리 코드가 들어있다면 실행해주자
+                    handler?.onResponse(json)
+
+
+                }
+
+            })
+        }
+
+
         //토론 상세
 
         fun getRequestTopicDetail(context: Context,topicId:Int ,handler: JsonResponseHandler?) {
