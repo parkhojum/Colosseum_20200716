@@ -3,9 +3,11 @@ package com.example.colosseum_20200716
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import kotlinx.android.synthetic.main.custom_action_bar.*
 
 abstract class BaseActivity: AppCompatActivity() {
 
@@ -18,6 +20,7 @@ abstract class BaseActivity: AppCompatActivity() {
 // BaseActivity를 상속받는 모든 액티비디들이 => 이 변수들을 상속받게 된다.
 
  lateinit var notificationBtn : ImageView
+ lateinit var notiCountTxt : TextView
 
  override fun onCreate(savedInstanceState: Bundle?) {
   super.onCreate(savedInstanceState)
@@ -49,6 +52,7 @@ abstract class BaseActivity: AppCompatActivity() {
   parentToolBar.setContentInsetsAbsolute(0,0)
 
   notificationBtn = myActionBar.customView.findViewById(R.id.notificationBtn)
+  notiCountTxt = myActionBar.customView.findViewById(R.id.notiCountTxt)
 
  }
 

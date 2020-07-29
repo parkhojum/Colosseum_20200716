@@ -4,13 +4,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.colosseum_20200716.BaseActivity
 import com.example.colosseum_20200716.R
+import com.example.colosseum_20200716.adapters.NotificationAdapter
 import com.example.colosseum_20200716.datas.Notification
 import com.example.colosseum_20200716.utils.ServerUtil
+import kotlinx.android.synthetic.main.activity_notification_list.*
 import org.json.JSONObject
 
 class NotificationListActivity : BaseActivity() {
 
     val mNotiList = ArrayList<Notification>()
+    lateinit var mNotiAdaper : NotificationAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +27,11 @@ class NotificationListActivity : BaseActivity() {
     }
 
     override fun setValues() {
+
+        getNotiListFromServer()
+
+        mNotiAdaper = NotificationAdapter(mContext,R.layout.notification_list_item,mNotiList)
+        notiLisView.adapter = mNotiAdaper
 
     }
 
@@ -42,6 +50,8 @@ class NotificationListActivity : BaseActivity() {
 
                 runOnUiThread {
 //                    어댑터 새로고침
+                    mNotiAdaper.notifyDataSetChanged()
+
 
                 }
 
