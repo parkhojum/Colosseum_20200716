@@ -67,6 +67,44 @@ class MainActivity : BaseActivity() {
 //        BaseActivity가 돌려주는 => 알림 버튼을
         notificationBtn.visibility = View.VISIBLE
 
+
+
+    }
+    
+//    알림의 갯수만 가져오는 API 호출
+
+    fun getNotiCountFromServer() {
+        ServerUtil.getRequestNotificationCount(mContext, object :ServerUtil.JsonResponseHandler{
+            override fun onResponse(json: JSONObject) {
+
+                val data = json.getJSONObject("data")
+
+                val unreadNotiCount = data.getInt("unread_noty_count")
+
+//
+
+                runOnUiThread {
+
+                    if (unreadNotiCount == 0) {
+
+                        notiCountTxt.visibility = View.GONE
+
+                    }
+                    else{
+
+                        notiCountTxt.visibility = View.VISIBLE
+                        notiCountTxt.text = unreadNotiCount.toString()
+                    }
+                }
+
+            }
+
+        })
+
+    }
+
+    override fun onResume() {
+        super.onResume()
     }
 
     fun getTopicListFromServer() {

@@ -48,6 +48,13 @@ class NotificationListActivity : BaseActivity() {
                     mNotiList.add(Notification.getNotificationFromJson(notifications.getJSONObject(i)))
                 }
 
+//                알림이 하나라도 있다면 => 알림을 어디까지 읽었는지 서버에 전송해주자.
+//                그래야 메인화면에서 알림 갯수르 0개로 만들 수 있다.
+
+//                알림을 어디까지 읽었는지 알려주고서는 => 아무 일도 하지 않을 예정
+//                handLer 에 null 넣어서, 할일이 없다고 명시.
+                ServerUtil.postRequesNotificationChek(mContext,mNotiList[0].id,null)
+
                 runOnUiThread {
 //                    어댑터 새로고침
                     mNotiAdaper.notifyDataSetChanged()
