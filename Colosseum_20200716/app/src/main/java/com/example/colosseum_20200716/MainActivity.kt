@@ -70,6 +70,8 @@ class MainActivity : BaseActivity() {
 
 
     }
+
+
     
 //    알림의 갯수만 가져오는 API 호출
 
@@ -105,6 +107,7 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        getNotiCountFromServer()
     }
 
     fun getTopicListFromServer() {

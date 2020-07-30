@@ -420,13 +420,13 @@ class ServerUtil {
         }
 
 //
-fun postRequesNotificationChek(context: Context,sideId: Int , handler: JsonResponseHandler?) {
+        fun postRequesNotificationChek(context: Context,sideId: Int , handler: JsonResponseHandler?) {
 
     //서버 통신 담당 변수 (클라이언트 역활 수행 변수)
     val client = OkHttpClient()
 
     //어느 주소로 가야하는지 저장 (http://15.165.177.142/user로 가자)
-    val urlString = "${BASE_URL}/notifcation"
+    val urlString = "${BASE_URL}/notification"
 
     //서버에 가지고 갈 짐 (데이터) 을FormBody를 이용해 담자
     //POST /PUT /PATCH가 같은 방식
